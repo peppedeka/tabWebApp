@@ -2,10 +2,11 @@
   <mat-tab-group>
     <mat-tab label="Coils">
       <h1>Last detection: {{lastDetectionCoils}}</h1>
+      <h2>Version: {{ versionCoils }}</h2>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceCoils.length > 0">
         <mat-table #table [dataSource]="dataSourceCoils">
           <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="status">
@@ -20,71 +21,67 @@
       </div>
     </mat-tab>
     <mat-tab label="Discrete Inputs">
-        <h1>Last detection: {{lastDetectionDiscreteInputs}}</h1>
-        <div class="example-container mat-elevation-z8" *ngIf="dataSourceDiscreteInputs.length > 0">
-          <mat-table #table [dataSource]="dataSourceDiscreteInputs">
-            <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="status">
-              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-              <mat-cell *matCellDef="let element">
-                <i [class.active]="element.status" class="material-icons">fiber_manual_record</i>
-              </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          </mat-table>
-        </div>
+      <h1>Last detection: {{lastDetectionDiscreteInputs}}</h1>
+      <h2>Version: {{ versionDiscreteInputs }}</h2>
+      <div class="example-container mat-elevation-z8" *ngIf="dataSourceDiscreteInputs.length > 0">
+        <mat-table #table [dataSource]="dataSourceDiscreteInputs">
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <i [class.active]="element.status" class="material-icons">fiber_manual_record</i>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
     </mat-tab>
     <mat-tab label="Holdings register">
-        <h1>Last detection: {{lastDetectionHoldingsRegister}}</h1>
-        <div class="example-container mat-elevation-z8" *ngIf="dataSourceHoldingsRegister.length > 0">
-          <mat-table #table [dataSource]="dataSourceHoldingsRegister">
-            <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="status">
-              <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
-              <mat-cell *matCellDef="let element">
-                <form>
-                  <mat-form-field>
-                    <input matInput #inputRowHoldingsRegister  [value]="element.status">
-                  </mat-form-field>
-                  <button mat-button (click)="saveInputRegister(element, inputRowHoldingsRegister)"><i class="material-icons save">save</i></button>
-                </form>
-              </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          </mat-table>
-        </div>
+      <h1>Last detection: {{lastDetectionHoldingsRegister}}</h1>
+      <h2>Version: {{ versionHoldingsRegister }}</h2>
+      <div class="example-container mat-elevation-z8" *ngIf="dataSourceHoldingsRegister.length > 0">
+        <mat-table #table [dataSource]="dataSourceHoldingsRegister">
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <input matInput #inputRowHoldingsRegister [value]="element.status">
+              <button mat-button (click)="saveHoldingsRegister(element, inputRowHoldingsRegister)">
+                <i class="material-icons save">save</i>
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
     </mat-tab>
     <mat-tab label="Input register">
-        <h1>Last detection: {{lastDetectionInputRegister}}</h1>
-        <div class="example-container mat-elevation-z8" *ngIf="dataSourceInputRegister.length > 0">
-          <mat-table #table [dataSource]="dataSourceInputRegister">
-            <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="status">
-              <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
-              <mat-cell *matCellDef="let element">
-                <form>
-                  <mat-form-field>
-                    <input matInput #inputRowInputRegister [value]="element.status">
-                  </mat-form-field>
-                  <button mat-button (click)="saveInputRegister(element, inputRowInputRegister)"><i class="material-icons save">save</i></button>
-                </form>
-              </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          </mat-table>
-        </div>
+      <h1>Last detection: {{lastDetectionInputRegister}}</h1>
+      <h2>Version: {{ versionInputRegister }}</h2>
+      <div class="example-container mat-elevation-z8" *ngIf="dataSourceInputRegister.length > 0">
+        <mat-table #table [dataSource]="dataSourceInputRegister">
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.status}}
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>
