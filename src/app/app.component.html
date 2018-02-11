@@ -33,7 +33,7 @@
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceDiscreteInputs.length > 0">
         <mat-table #table [dataSource]="dataSourceDiscreteInputs">
           <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Boolean Inputs (IX) </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="status">
