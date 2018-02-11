@@ -8,6 +8,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {CdkTableModule} from '@angular/cdk/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
+
 import { AppComponent } from './app.component';
 
 import { DataService } from './service/data.service';
@@ -25,7 +27,8 @@ import { DataService } from './service/data.service';
     MatTabsModule,
     CdkTableModule,
     MatGridListModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2DeviceDetectorModule.forRoot()
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

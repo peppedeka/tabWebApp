@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Ng2DeviceService } from 'ng2-device-detector';
+
 import { DataService } from './service/data.service';
 
 export interface Element {
@@ -14,16 +16,26 @@ export interface Element {
 })
 export class AppComponent {
   title = 'app';
+
   dataSourceCoils: Element[] = [];
   lastDetectionCoils: String = '';
-  lastDetectionDiscreteInputs: String = '';
+
   dataSourceDiscreteInputs: Element[] = [];
-  lastDetectionHoldingsRegister: String = '';
+  lastDetectionDiscreteInputs: String = '';
+
   dataSourceHoldingsRegister: Element[] = [];
-  lastDetectionInputRegister: String = '';
+  lastDetectionHoldingsRegister: String = '';
+
   dataSourceInputRegister: Element[] = [];
+  lastDetectionInputRegister: String = '';
+
   displayedColumns = ['name', 'status'];
-  constructor(private _dataService: DataService) {
+
+  deviceInfo = null;
+
+  constructor(private _dataService: DataService, private _deviceService: Ng2DeviceService) {
+
+    console.log(this._deviceService.getDeviceInfo());
 
     this._dataService.getCoils().subscribe((res) => {
       this.lastDetectionCoils = res.date_time;
