@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { DataService } from './service/data.service';
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 export interface Element {
   name: string;
-  status: string;
+  status: boolean;
 }
 
 @Component({
@@ -41,7 +42,14 @@ export class AppComponent {
   constructor(private _dataService: DataService, public snackBar: MatSnackBar) {
 
     this.detectmob();
+    this.reload();
+    const timer = TimerObservable.create(0, 1000);
+    timer.subscribe((t) => {
+      this.reload();
+    });
+  }
 
+  reload() {
     this._dataService.getCoils().subscribe((res) => {
       this.lastDetectionCoils = res.date_time;
       this.versionCoils = res.version;
@@ -78,7 +86,7 @@ export class AppComponent {
     this._dataService.getInputRegister().subscribe((res) => {
       this.lastDetectionInputRegister = res.date_time;
       this.versionInputRegister = res.version;
-
+      this.dataSourceInputRegister.length = 0;
       for (let i = 0; i < res.address.length; i++) {
         const el: Element = { name: res.address[i], status: res.value[i] };
         this.dataSourceInputRegister.push(el);
@@ -103,17 +111,33 @@ export class AppComponent {
     row.status = value.value;
     const self = this;
     this._dataService.setHoldingsRegisterRow(row)
-    .subscribe(
-      (res) => {
-        this.snackBar.open('saved', 'address ' + row.name, {
-          duration: 2000,
-        });
-      },
-      (err) => {
-        this.snackBar.open('error', err.message, {
-          duration: 2000,
-        });
-      }
-    );
+      .subscribe(
+        (res) => {
+          this.snackBar.open('saved', 'address ' + row.name, {
+            duration: 2000,
+          });
+
+          this.reload();
+        },
+        (err) => {
+          this.snackBar.open('error', err.message, {
+            duration: 2000,
+          });
+        }
+      );
+  }
+
+  toggleCoils(index: number) {
+    this.dataSourceCoils[index].status = !this.dataSourceCoils[index].status;
+    this._dataService.setCoilsRow(this.dataSourceCoils[index])
+      .subscribe(
+        (res) => {
+        },
+        (err) => {
+          this.snackBar.open('error', err.message, {
+            duration: 2000,
+          });
+        }
+      );
   }
 }

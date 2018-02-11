@@ -11,8 +11,15 @@
           </ng-container>
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <i [class.active]="element.status" class="material-icons">fiber_manual_record</i>
+            <mat-cell *matCellDef="let element; let idx = index">
+              <mat-button-toggle-group #group="matButtonToggleGroup" >
+                <mat-button-toggle value="left" [checked]="!element.status" (click)="toggleCoils(idx)">
+                  OFF
+                </mat-button-toggle>
+                <mat-button-toggle value="center" [checked]="element.status" (click)="toggleCoils(idx)">
+                  ON
+                </mat-button-toggle>
+              </mat-button-toggle-group>
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -74,8 +81,8 @@
           </ng-container>
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              {{ element.status}}
+            <mat-cell *matCellDef="let element; let idx = index">
+              {{ dataSourceInputRegister[idx].status}}
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

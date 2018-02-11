@@ -7,6 +7,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +32,7 @@ import { DataService } from './service/data.service';
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatButtonToggleModule,
     BrowserAnimationsModule
   ],
   providers: [DataService],
