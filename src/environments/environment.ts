@@ -9,6 +9,8 @@ export const environment = {
     coils: 'read_coils.json',
     discreteInputs: 'read_discrete_inputs.json',
     holdingRegister: 'read_holding_registers.json',
-    inputRegister: 'read_input_registers.json'
+    inputRegister: 'read_input_registers.json',
+    holdingRegisterPost: 'write_holding_registers.json',
+    inputRegisterPost: 'write_input_registers.json'
   }
 };

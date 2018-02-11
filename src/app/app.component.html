@@ -51,8 +51,9 @@
               <mat-cell *matCellDef="let element">
                 <form>
                   <mat-form-field>
-                    <input matInput  [value]="element.status">
+                    <input matInput #inputRowHoldingsRegister  [value]="element.status">
                   </mat-form-field>
+                  <button mat-button (click)="saveInputRegister(element, inputRowHoldingsRegister)"><i class="material-icons save">save</i></button>
                 </form>
               </mat-cell>
             </ng-container>
@@ -74,8 +75,9 @@
               <mat-cell *matCellDef="let element">
                 <form>
                   <mat-form-field>
-                    <input matInput  [value]="element.status">
+                    <input matInput #inputRowInputRegister [value]="element.status">
                   </mat-form-field>
+                  <button mat-button (click)="saveInputRegister(element, inputRowInputRegister)"><i class="material-icons save">save</i></button>
                 </form>
               </mat-cell>
             </ng-container>

@@ -87,4 +87,14 @@ export class AppComponent {
       this.mobile = true;
     }
   }
+
+  saveInputRegister(row: Element, value: any) {
+    row.status = value.value;
+    this._dataService.setInputRegisterRow(row);
+  }
+
+  saveHoldingsRegister(row: Element, value: any) {
+    row.status = value.value;
+    this._dataService.setHoldingsRegisterRow(row);
+  }
 }
