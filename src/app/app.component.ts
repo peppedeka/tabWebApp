@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { Ng2DeviceService } from 'ng2-device-detector';
-
 import { DataService } from './service/data.service';
 
 export interface Element {
@@ -33,10 +31,9 @@ export class AppComponent {
 
   mobile: Boolean = false;
 
-  constructor(private _dataService: DataService, private _deviceService: Ng2DeviceService) {
+  constructor(private _dataService: DataService) {
 
-    console.log(this._deviceService.getDeviceInfo());
-    console.log(this.detectmob());
+    this.detectmob();
 
     this._dataService.getCoils().subscribe((res) => {
       this.lastDetectionCoils = res.date_time;
