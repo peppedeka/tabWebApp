@@ -64,7 +64,7 @@ export class AppComponent {
     this._dataService.getDiscreteInputs().subscribe((res) => {
       this.lastDetectionDiscreteInputs = res.date_time;
       this.versionDiscreteInputs = res.version;
-
+      this.dataSourceDiscreteInputs.length = 0;
       const keys: string[] = Object.keys(res.value);
       keys.forEach((key) => {
         const el: Element = { name: key, status: res.value[key] };

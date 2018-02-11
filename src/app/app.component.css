@@ -12,7 +12,7 @@
 .active {
   color: green!important;
 }
-.material-icons {
+.material-icons, .deactive {
   color: red;
 }
 mat-tab-group {

@@ -38,8 +38,8 @@
           </ng-container>
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <i [class.active]="element.status" class="material-icons">fiber_manual_record</i>
+            <mat-cell *matCellDef="let idx = index">
+              <i [class.active]="dataSourceDiscreteInputs[idx].status"  class="material-icons">fiber_manual_record</i>
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
