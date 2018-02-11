@@ -56,21 +56,22 @@ export class AppComponent {
     this._dataService.getHoldingsRegister().subscribe((res) => {
       console.log(res);
       this.lastDetectionHoldingsRegister = res.date_time;
-      const keys: string[] = Object.keys(res.value);
-      keys.forEach((key) => {
-        const el: Element = { name: key, status: res.value[key] };
+
+      for (let i = 0; i < res.address.length; i++) {
+        const el: Element = { name: res.address[i], status: res.value[i] };
         this.dataSourceHoldingsRegister.push(el);
-      });
+      }
+
     });
 
     this._dataService.getInputRegister().subscribe((res) => {
       console.log(res);
       this.lastDetectionInputRegister = res.date_time;
-      const keys: string[] = Object.keys(res.value);
-      keys.forEach((key) => {
-        const el: Element = { name: key, status: res.value[key] };
+
+      for (let i = 0; i < res.address.length; i++) {
+        const el: Element = { name: res.address[i], status: res.value[i] };
         this.dataSourceInputRegister.push(el);
-      });
+      }
     });
   }
 

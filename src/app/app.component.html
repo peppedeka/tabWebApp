@@ -43,13 +43,17 @@
         <div class="example-container mat-elevation-z8" *ngIf="dataSourceHoldingsRegister.length > 0">
           <mat-table #table [dataSource]="dataSourceHoldingsRegister">
             <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="status">
-              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
               <mat-cell *matCellDef="let element">
-                <i [class.active]="element.status" class="material-icons">fiber_manual_record</i>
+                <form>
+                  <mat-form-field>
+                    <input matInput  [value]="element.status">
+                  </mat-form-field>
+                </form>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -62,13 +66,17 @@
         <div class="example-container mat-elevation-z8" *ngIf="dataSourceInputRegister.length > 0">
           <mat-table #table [dataSource]="dataSourceInputRegister">
             <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="status">
-              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
               <mat-cell *matCellDef="let element">
-                <i [class.active]="element.status" class="material-icons">fiber_manual_record</i>
+                <form>
+                  <mat-form-field>
+                    <input matInput  [value]="element.status">
+                  </mat-form-field>
+                </form>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
