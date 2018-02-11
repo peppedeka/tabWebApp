@@ -1,8 +1,8 @@
 <div class="container">
   <mat-tab-group>
-    <mat-tab label="Coils">
-      <h1>Last detection: {{lastDetectionCoils}}</h1>
-      <h2>Version: {{ versionCoils }}</h2>
+    <mat-tab label="Boolean Inputs (IX)">
+      <h2>Last detection: {{lastDetectionCoils}}</h2>
+      <h3>Version: {{ versionCoils }}</h3>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceCoils.length > 0">
         <mat-table #table [dataSource]="dataSourceCoils">
           <ng-container matColumnDef="name">
@@ -27,13 +27,13 @@
         </mat-table>
       </div>
     </mat-tab>
-    <mat-tab label="Discrete Inputs">
-      <h1>Last detection: {{lastDetectionDiscreteInputs}}</h1>
-      <h2>Version: {{ versionDiscreteInputs }}</h2>
+    <mat-tab label="Boolean Outputs (QX)">
+      <h2>Last detection: {{lastDetectionDiscreteInputs}}</h2>
+      <h3>Version: {{ versionDiscreteInputs }}</h3>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceDiscreteInputs.length > 0">
         <mat-table #table [dataSource]="dataSourceDiscreteInputs">
           <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Boolean Inputs (IX) </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="status">
@@ -47,9 +47,9 @@
         </mat-table>
       </div>
     </mat-tab>
-    <mat-tab label="Holdings register">
-      <h1>Last detection: {{lastDetectionHoldingsRegister}}</h1>
-      <h2>Version: {{ versionHoldingsRegister }}</h2>
+    <mat-tab label="Integer Inputs (IW)">
+      <h2>Last detection: {{lastDetectionHoldingsRegister}}</h2>
+      <h3>Version: {{ versionHoldingsRegister }}</h3>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceHoldingsRegister.length > 0">
         <mat-table #table [dataSource]="dataSourceHoldingsRegister">
           <ng-container matColumnDef="name">
@@ -70,9 +70,9 @@
         </mat-table>
       </div>
     </mat-tab>
-    <mat-tab label="Input register">
-      <h1>Last detection: {{lastDetectionInputRegister}}</h1>
-      <h2>Version: {{ versionInputRegister }}</h2>
+    <mat-tab label="Integer Outputs (QW)">
+      <h2>Last detection: {{lastDetectionInputRegister}}</h2>
+      <h3>Version: {{ versionInputRegister }}</h3>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceInputRegister.length > 0">
         <mat-table #table [dataSource]="dataSourceInputRegister">
           <ng-container matColumnDef="name">
