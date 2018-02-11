@@ -31,11 +31,12 @@ export class AppComponent {
 
   displayedColumns = ['name', 'status'];
 
-  deviceInfo = null;
+  mobile: Boolean = false;
 
   constructor(private _dataService: DataService, private _deviceService: Ng2DeviceService) {
 
     console.log(this._deviceService.getDeviceInfo());
+    console.log(this.detectmob());
 
     this._dataService.getCoils().subscribe((res) => {
       this.lastDetectionCoils = res.date_time;
@@ -74,5 +75,18 @@ export class AppComponent {
         this.dataSourceInputRegister.push(el);
       });
     });
+  }
+
+  detectmob() {
+    if (navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)
+    ) {
+      this.mobile = true;
+    }
   }
 }
