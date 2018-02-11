@@ -105,7 +105,7 @@ export class AppComponent {
     this._dataService.setHoldingsRegisterRow(row)
     .subscribe(
       (res) => {
-        this.snackBar.open('ok', res.message, {
+        this.snackBar.open('saved', 'address ' + row.name, {
           duration: 2000,
         });
       },
