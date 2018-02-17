@@ -1,8 +1,113 @@
-<div class="container">
-  <mat-tab-group>
-    <mat-tab label="Boolean Inputs (IX)">
-      <h2>Last detection: {{lastDetectionCoils}}</h2>
-      <h3>Version: {{ versionCoils }}</h3>
+<ng-container *ngIf="!mobile">
+  <div class="container">
+    <mat-tab-group>
+      <mat-tab label="Boolean Inputs (IX)">
+        <h2>Last detection: {{lastDetectionCoils}}</h2>
+        <h3>Version: {{ versionCoils }}</h3>
+        <div class="example-container mat-elevation-z8" *ngIf="dataSourceCoils.length > 0">
+          <mat-table #table [dataSource]="dataSourceCoils">
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+              <mat-cell *matCellDef="let element; let idx = index">
+                <mat-button-toggle-group #group="matButtonToggleGroup">
+                  <mat-button-toggle value="left" [checked]="!element.status" (click)="toggleCoils(idx)">
+                    OFF
+                  </mat-button-toggle>
+                  <mat-button-toggle value="center" [checked]="element.status" (click)="toggleCoils(idx)">
+                    ON
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Boolean Outputs (QX)">
+        <h2>Last detection: {{lastDetectionDiscreteInputs}}</h2>
+        <h3>Version: {{ versionDiscreteInputs }}</h3>
+        <div class="example-container mat-elevation-z8" *ngIf="dataSourceDiscreteInputs.length > 0">
+          <mat-table #table [dataSource]="dataSourceDiscreteInputs">
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+              <mat-cell *matCellDef="let idx = index">
+                <i [class.active]="dataSourceDiscreteInputs[idx].status" class="material-icons">fiber_manual_record</i>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Integer Inputs (IW)">
+        <h2>Last detection: {{lastDetectionHoldingsRegister}}</h2>
+        <h3>Version: {{ versionHoldingsRegister }}</h3>
+        <div class="example-container mat-elevation-z8" *ngIf="dataSourceHoldingsRegister.length > 0">
+          <mat-table #table [dataSource]="dataSourceHoldingsRegister">
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <input matInput #inputRowHoldingsRegister [value]="element.status">
+                <button mat-button (click)="saveHoldingsRegister(element, inputRowHoldingsRegister)">
+                  <i class="material-icons save">save</i>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-tab>
+      <mat-tab label="Integer Outputs (QW)">
+        <h2>Last detection: {{lastDetectionInputRegister}}</h2>
+        <h3>Version: {{ versionInputRegister }}</h3>
+        <div class="example-container mat-elevation-z8" *ngIf="dataSourceInputRegister.length > 0">
+          <mat-table #table [dataSource]="dataSourceInputRegister">
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+              <mat-cell *matCellDef="let element; let idx = index">
+                {{ dataSourceInputRegister[idx].status}}
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-container>
+<ng-container *ngIf="mobile">
+  <h1>Last detection: {{lastDetectionCoils}}</h1>
+  <h2>Version: {{ versionCoils }}</h2>
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Boolean
+        </mat-panel-title>
+        <mat-panel-description>
+          Inputs (IX)
+        </mat-panel-description>
+      </mat-expansion-panel-header>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceCoils.length > 0">
         <mat-table #table [dataSource]="dataSourceCoils">
           <ng-container matColumnDef="name">
@@ -12,7 +117,7 @@
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
             <mat-cell *matCellDef="let element; let idx = index">
-              <mat-button-toggle-group #group="matButtonToggleGroup" >
+              <mat-button-toggle-group #group="matButtonToggleGroup">
                 <mat-button-toggle value="left" [checked]="!element.status" (click)="toggleCoils(idx)">
                   OFF
                 </mat-button-toggle>
@@ -26,10 +131,16 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
       </div>
-    </mat-tab>
-    <mat-tab label="Boolean Outputs (QX)">
-      <h2>Last detection: {{lastDetectionDiscreteInputs}}</h2>
-      <h3>Version: {{ versionDiscreteInputs }}</h3>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Boolean
+        </mat-panel-title>
+        <mat-panel-description>
+          Outputs (QX)
+        </mat-panel-description>
+      </mat-expansion-panel-header>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceDiscreteInputs.length > 0">
         <mat-table #table [dataSource]="dataSourceDiscreteInputs">
           <ng-container matColumnDef="name">
@@ -39,17 +150,23 @@
           <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
             <mat-cell *matCellDef="let idx = index">
-              <i [class.active]="dataSourceDiscreteInputs[idx].status"  class="material-icons">fiber_manual_record</i>
+              <i [class.active]="dataSourceDiscreteInputs[idx].status" class="material-icons">fiber_manual_record</i>
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
       </div>
-    </mat-tab>
-    <mat-tab label="Integer Inputs (IW)">
-      <h2>Last detection: {{lastDetectionHoldingsRegister}}</h2>
-      <h3>Version: {{ versionHoldingsRegister }}</h3>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Integer
+        </mat-panel-title>
+        <mat-panel-description>
+          Inputs (IW)
+        </mat-panel-description>
+      </mat-expansion-panel-header>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceHoldingsRegister.length > 0">
         <mat-table #table [dataSource]="dataSourceHoldingsRegister">
           <ng-container matColumnDef="name">
@@ -69,10 +186,16 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
       </div>
-    </mat-tab>
-    <mat-tab label="Integer Outputs (QW)">
-      <h2>Last detection: {{lastDetectionInputRegister}}</h2>
-      <h3>Version: {{ versionInputRegister }}</h3>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Integer
+        </mat-panel-title>
+        <mat-panel-description>
+          Outputs (QW)
+        </mat-panel-description>
+      </mat-expansion-panel-header>
       <div class="example-container mat-elevation-z8" *ngIf="dataSourceInputRegister.length > 0">
         <mat-table #table [dataSource]="dataSourceInputRegister">
           <ng-container matColumnDef="name">
@@ -89,6 +212,9 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
       </div>
-    </mat-tab>
-  </mat-tab-group>
-</div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+
+</ng-container>

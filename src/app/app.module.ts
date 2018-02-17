@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { DataService } from './service/data.service';
     MatButtonModule,
     MatSnackBarModule,
     MatButtonToggleModule,
+    MatExpansionModule,
     BrowserAnimationsModule
   ],
   providers: [DataService],
